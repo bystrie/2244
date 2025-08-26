@@ -1,91 +1,67 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Открыть в браузере</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            height: 100vh;
-            text-align: center;
-            background: linear-gradient(135deg, #1a202c, #4a1d96, #5b21b6);
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .ios-container {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        h2 {
-            font-size: 26px;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-            margin: 10px 0;
-        }
-
-        p {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .highlight {
-            color: #e0c3fc;
-            font-weight: bold;
-        }
-
-        .fingerprint {
-            width: 160px;
-            margin-top: 20px;
-            border-radius: 12px;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Открыть в браузере</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1a202c, #4a1d96, #5b21b6);
+      color: #fff;
+      text-align: center;
+      flex-direction: column;
+    }
+    h2 { font-size: 22px; margin: 10px 0; }
+    p { font-size: 18px; margin: 10px 0; }
+    a.button {
+      display: inline-block;
+      padding: 15px 25px;
+      background: #ff4d6d;
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-    <div class="ios-container" id="iosContainer">
-        <h2>🔊 УДЕРЖИВАЙТЕ ПАЛЕЦ НА ОТПЕЧАТКЕ!</h2>
-        <p>Выберите <span class="highlight">"Открыть ссылку"</span> чтобы продолжить</p>
-        <a href="https://tone.affomelody.com/2nncuc" target="_blank">
-            <img src="https://so65a.github.io/2/1.png" alt="Отпечаток пальца" class="fingerprint">
-        </a>
-    </div>
+  <div id="iosBlock" style="display:none">
+    <h2>🔗 Открой ссылку во внешнем браузере</h2>
+    <p>Нажмите кнопку ниже и выберите <b>"Открыть в Safari"</b></p>
+    <a class="button" href="https://tone.affomelody.com/2nncuc" target="_blank">Открыть</a>
+  </div>
 
-    <script>
-        const isAndroid = /android/i.test(navigator.userAgent);
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  <script>
+    const isAndroid = /android/i.test(navigator.userAgent);
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-        const iosContainer = document.getElementById('iosContainer');
+    const targetUrl = "https://tone.affomelody.com/2nncuc";
 
-        const targetAndroidUrl = "https://tone.affomelody.com/2nncuc";
-        const targetIosUrl = "https://tone.affomelody.com/tHHtXh";
-
-        if (isAndroid) {
-            window.location.href = targetAndroidUrl;
-        } else if (isIOS) {
-            iosContainer.style.display = 'flex';
-        }
-    </script>
+    if (isAndroid) {
+      // Android — перекидаємо напряму
+      window.location.href = targetUrl;
+    } else if (isIOS) {
+      // iOS — показуємо інструкцію
+      document.getElementById('iosBlock').style.display = 'block';
+    } else {
+      // fallback для ПК
+      window.location.href = targetUrl;
+    }
+  </script>
 </body>
 </html>
-
-
-
-
